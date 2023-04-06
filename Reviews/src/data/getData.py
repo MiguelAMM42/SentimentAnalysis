@@ -1,7 +1,5 @@
 from datasets import load_dataset, concatenate_datasets
-
-
-languages = ["de", "en", "es", "fr", "ja", "zh"]
+from utils import languages
 
 
 def getData():
