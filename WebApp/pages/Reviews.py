@@ -2,26 +2,28 @@ import streamlit as st
 import pandas as pd
 
 languages = {
-    "de": "German",
-    "en": "English",
-    "es": "Spanish",
-    "fr": "French",
-    "ja": "Japanese",
-    "zh": "Chinese"
+    "German" : "DE",
+    "English" : "EN",
+    "Spanish" : "ES",
+    "French" : "FR",
+    "Japanese" : "JA",
+    "Chinese" : "ZH"
 }
+
+dataframes = {}
+
+for language in languages:
+    with open(f"../Reviews/analysedData/analysed_amazon_reviews_multi_{languages[language]}.csv", "r") as fCSV:
+        df = pd.read_csv(fCSV)
+        dataframes[language] = df
 
 
 st.write("REVIEWS")
 
 option = st.selectbox(
     'What language do you wish to select?',
-    ('German', 'English', 'Spanish'))
-
-st.write('You selected:', option)
-
-
-for language in languages.keys():
-    st.write(f"Language: {languages[language]}")
-    with open(f"../Reviews/analysedData/analysed_amazon_reviews_multi_{language.upper()}.csv", "r") as fCSV:
-        df = pd.read_csv(fCSV)
-    st.write(df)
+    ('German', 'English', 'Spanish', 'French', 'Japanese', 'Chinese'))
+st.write('Reviews\' stats for: ', option)
+#st.write(dataframes[option].head(10))
+# plot with stars and negative/positive/compound values
+st.line_chart(dataframes[option][["stars","neg","neu","pos","compound"]])
