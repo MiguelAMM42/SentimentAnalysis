@@ -15,15 +15,16 @@ def twitter_chatgpt_ai(query) :
 
     tweets = []
 
-    f = open('scrapped_data.csv', 'w', encoding='UTF8')
+    f = open('Twitter_ChatGPT_AI/scrapped_data.csv', 'w', encoding='UTF8')
     writer = csv.writer(f)
 
     header = ['id', 'date', 'renderedContent', 'likeCount', 'retweetCount', 'replyCount', 'inReplyToTweetId', 'hashtags']
 
     writer.writerow(header)
+    counter = 0
 
-    for i, tweet in enumerate(data):
-        if i > 20:
+    for tweet in data:
+        if counter > 2000:
             break
         if (tweet.lang == 'en') :
             tweets.append(tweet)
@@ -36,12 +37,16 @@ def twitter_chatgpt_ai(query) :
             l.append(text)
             l.append(tweet.likeCount)
             l.append(tweet.retweetCount)
+            l.append(tweet.replyCount)
             l.append(tweet.inReplyToTweetId)
             l.append(tweet.hashtags)
             writer.writerow(l)
-            print(f"{i}: {tweet.rawContent, tweet.vibe}")
+            print(f"{counter}")
+            counter +=1
 
     f.close()
+
+
 
 
 
