@@ -5,7 +5,7 @@ from tqdm.notebook import tqdm
 import snscrape.modules.twitter as sntwitter
 import snscrape.modules.instagram as sninstagram
 
-query = "#chatgpt OR #AI"
+query = "#chatgpt OR #AI min_replies:10 min_faves:100 min_retweets:100"
 
 
 def twitter_chatgpt_ai(query) :
@@ -18,13 +18,13 @@ def twitter_chatgpt_ai(query) :
     f = open('Twitter_ChatGPT_AI/scrapped_data.csv', 'w', encoding='UTF8')
     writer = csv.writer(f)
 
-    header = ['id', 'date', 'renderedContent', 'likeCount', 'retweetCount', 'replyCount', 'inReplyToTweetId', 'hashtags']
+    header = ['id', 'date', 'renderedContent', 'likeCount', 'retweetCount', 'replyCount', 'hashtags']
 
     writer.writerow(header)
     counter = 0
 
     for tweet in data:
-        if counter > 2000:
+        if counter > 100:
             break
         if (tweet.lang == 'en') :
             tweets.append(tweet)
@@ -38,7 +38,6 @@ def twitter_chatgpt_ai(query) :
             l.append(tweet.likeCount)
             l.append(tweet.retweetCount)
             l.append(tweet.replyCount)
-            l.append(tweet.inReplyToTweetId)
             l.append(tweet.hashtags)
             writer.writerow(l)
             print(f"{counter}")
