@@ -15,7 +15,7 @@ languages = {
 dataframes = {}
 
 for language in languages:
-    with open(f"../Reviews/analysedData/analysed_amazon_reviews_multi_{languages[language]}.csv", "r") as fCSV:
+    with open(f"../data/reviews/analysed_amazon_reviews_multi_{languages[language]}.csv", "r") as fCSV:
         df = pd.read_csv(fCSV)
         dataframes[language] = df
 
