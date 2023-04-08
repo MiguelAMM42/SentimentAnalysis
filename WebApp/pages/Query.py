@@ -6,7 +6,7 @@ from nltk.sentiment import SentimentIntensityAnalyzer
 sia = SentimentIntensityAnalyzer()
 import re
 import snscrape.modules.twitter as sntwitter
-from tqdm import tqdm
+
 
 
 def scraper(query, maxTweets):
@@ -18,7 +18,7 @@ def scraper(query, maxTweets):
     counter = 0
 
     for tweet in data:
-        if counter > maxTweets:
+        if counter >= maxTweets:
             break
         if tweet.lang == 'en':
             text = tweet.renderedContent
@@ -63,17 +63,40 @@ def dropColumns(df,cols):
     return df
 
 
-st.write("A statistical analysis of the sentiments manifested in a specific query")
+st.title("Twitter Sentiment Analysis")
+st.write("A statistical analysis of the sentiments manifested in a group of tweets")
+st.write("By default, the tweets are indexed from the most recent to the oldest.")
+st.write("However, you can change the order of the tweets to be indexed from the one with the most interations to the one with less.")
 title = st.text_input('Twitter query', 'from:twitter')
 maxTweets = st.slider('Number of tweets', 10, 250)
-if st.button('Submit'):    
-    df = scraper(title, maxTweets-1)
-    st.write(df)
+option = st.selectbox('Ordering',('Date', 'Interactions'))  
+if st.button('Submit'):  
+    df = scraper(title, maxTweets)
+    if option == 'Interactions':
+        df['totalEngagement'] = df['likeCount'] + df['retweetCount'] + df['replyCount']
+        df = df.sort_values(by='totalEngagement', ascending=False)
     sentiments = sentimentAnalysis(df)
-    st.write(sentiments)
     sentiments['index'] = range(1, len(df) + 1)
-    st.write("Sentiment Analysis")
     st.line_chart(data=sentiments, x="index", y="compound", use_container_width=True)
+    if option == 'Interactions':
+        st.header("Top 5 tweets by engagement")
+        st.divider()
+    else:
+        st.header("5 most recent tweets")
+        st.divider()
+    for i in range(5):
+        date = sentiments.iloc[i]['date'].strftime("%Y/%m/%d %H:%M:%S")
+        st.markdown(f"***Tweet Date:*** `{date}`")
+        st.markdown(f"***Tweet Content:*** `{sentiments.iloc[i]['renderedContent']}`")
+        st.markdown(f"***Tweet Likes:*** `{sentiments.iloc[i]['likeCount']}`")
+        st.markdown(f"***Tweet Retweets:*** `{sentiments.iloc[i]['retweetCount']}`")
+        st.markdown(f"***Tweet Replies:*** `{sentiments.iloc[i]['replyCount']}`")
+        st.markdown(f"***Tweet Hashtags:*** `{sentiments.iloc[i]['hashtags']}`")
+        st.markdown(f"***Tweet Sentiment (compound):*** `{sentiments.iloc[i]['compound']}`")
+        st.markdown(f"***Tweet Sentiment (positive):*** `{sentiments.iloc[i]['pos']}`")
+        st.markdown(f"***Tweet Sentiment (negative):*** `{sentiments.iloc[i]['neg']}`")
+        st.markdown(f"***Tweet Sentiment (neutral):*** `{sentiments.iloc[i]['neu']}`")
+        st.divider()
 else:
     st.write('Press the button to submit the query')
 
