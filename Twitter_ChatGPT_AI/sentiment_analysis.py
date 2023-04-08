@@ -20,7 +20,7 @@ def sentimentAnalysis(df):
 
     return sentiments
 
-def processed_data():
+def process_data():
     df = loadData("Twitter_ChatGPT_AI/scrapped_data.csv")
     sentiments = sentimentAnalysis(df)
     storeData("Twitter_ChatGPT_AI/processed_data.csv", sentiments)
@@ -54,6 +54,6 @@ def make_plot(sentiments):
     plt.show()
 
 
-sentiments = processed_data()
+sentiments = process_data()
 make_plot(sentiments)
 

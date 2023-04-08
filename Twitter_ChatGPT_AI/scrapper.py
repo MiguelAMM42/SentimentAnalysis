@@ -24,9 +24,9 @@ def twitter_chatgpt_ai(query) :
     counter = 0
 
     for tweet in data:
-        if counter > 2000:
+        if counter > 100:
             break
-        if (tweet.lang == 'en') :
+        if (tweet.lang == 'en' and tweet.likeCount > 20) :
             tweets.append(tweet)
             text = tweet.renderedContent
             text = re.sub(',','\\,',text)
@@ -41,7 +41,7 @@ def twitter_chatgpt_ai(query) :
             l.append(tweet.inReplyToTweetId)
             l.append(tweet.hashtags)
             writer.writerow(l)
-            print(f"{counter}")
+            #print(f"{counter}")
             counter +=1
 
     f.close()
