@@ -5,6 +5,7 @@ st.title("Sentiment Analysis of text")
 
 st.header("You can consult the sentiment analysis of Amazon reviews in :")
 # put links to the other pages
+st.write("Reviews")
 
 
 st.subheader("Made by:")
