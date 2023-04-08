@@ -3,5 +3,4 @@ seaborn
 matplotlib
 seaborn
 nltk
-re
 snscrape
