@@ -1,5 +1,7 @@
 import streamlit as st
 import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
 
 languages = {
     "German" : "DE",
@@ -24,6 +26,9 @@ option = st.selectbox(
     'What language do you wish to select?',
     ('German', 'English', 'Spanish', 'French', 'Japanese', 'Chinese'))
 st.write('Reviews\' stats for: ', option)
-#st.write(dataframes[option].head(10))
-# plot with stars and negative/positive/compound values
-st.line_chart(dataframes[option][["stars","neg","neu","pos","compound"]])
+st.write(dataframes[option])
+ax = sns.barplot(data=dataframes[option], x='stars', y='compound')
+ax.set_title('Compound Score by Amazon Star Review')
+fig = ax.get_figure()
+st.pyplot(fig)
+

@@ -1,10 +1,7 @@
 from nltk.sentiment import SentimentIntensityAnalyzer
-import nltk
 sia = SentimentIntensityAnalyzer()
-from utils import loadData, storeData,languages
 from tqdm import tqdm
 import pandas as pd
-import seaborn as sns
 import matplotlib.pyplot as plt
 
 def sentimentAnalysis(df):
@@ -20,14 +17,11 @@ def sentimentAnalysis(df):
 
     return sentiments
 
-def process_data():
-    df = loadData("Twitter_ChatGPT_AI/scrapped_data.csv")
+def processData(df):
     sentiments = sentimentAnalysis(df)
-    storeData("Twitter_ChatGPT_AI/processed_data.csv", sentiments)
     return sentiments
 
-
-def make_plot(sentiments):
+def makePlot(sentiments):
     a=[]
     pos = 0
     neg = 0
@@ -53,7 +47,4 @@ def make_plot(sentiments):
     plt.title("Sentiment")
     plt.show()
 
-
-sentiments = process_data()
-make_plot(sentiments)
 
