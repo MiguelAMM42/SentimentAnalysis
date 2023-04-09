@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 
 st.write("A statistical analysis of the sentiments manifested about AI and ChatGPT")
 
-with open("processedData.csv", "r") as fCSV:
+with open("data/chatGPT_AI/processedData.csv", "r") as fCSV:
     df = pd.read_csv(fCSV)
     df['index'] = range(1, len(df) + 1)
     dfCopy = df.copy()
