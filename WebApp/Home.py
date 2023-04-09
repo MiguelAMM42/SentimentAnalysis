@@ -13,7 +13,7 @@ st.markdown("[Inês Vicente](https://github.com/inesvicente2001)")
 st.markdown("[Jorge Melo](https://github.com/BatataDoc3)")
 st.markdown("[Miguel Martins](https://github.com/MiguelAMM42)")
 
-with open("./app/static/chatGPT_AI/processedData.csv", "r") as fCSV:
+with open("static/chatGPT_AI/processedData.csv", "r") as fCSV:
     df = pd.read_csv(fCSV)
     st.write(df)
 
