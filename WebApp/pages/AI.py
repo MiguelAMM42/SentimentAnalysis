@@ -2,11 +2,12 @@ import streamlit as st
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
+from pathlib import Path
 
-
+__path__ = Path("../static/chatGPT_AI/processedData.csv")
 st.write("A statistical analysis of the sentiments manifested about AI and ChatGPT")
 
-with open("static/chatGPT_AI/processedData.csv", "r") as fCSV:
+with open(__path__, "r") as fCSV:
     df = pd.read_csv(fCSV)
     df['index'] = range(1, len(df) + 1)
     dfCopy = df.copy()
