@@ -18,7 +18,8 @@ dataframes = {}
 APP_ROOT = os.path.dirname(os.path.abspath(__file__))
 
 for language in languages:
-    with open(os.path.join(APP_ROOT,f"../static/reviews/analysed_amazon_reviews_multi_{languages[language]}.csv", "r")) as fCSV:
+    __path__ = os.path.join(APP_ROOT, f"../static/reviews/analysed_amazon_reviews_multi_{languages[language]}.csv")
+    with open(__path__, "r") as fCSV:
         df = pd.read_csv(fCSV)
         dataframes[language] = df
 
