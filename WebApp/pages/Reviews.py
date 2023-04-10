@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
+import os
 
 languages = {
     "German" : "DE",
@@ -14,8 +15,10 @@ languages = {
 
 dataframes = {}
 
+APP_ROOT = os.path.dirname(os.path.abspath(__file__))
+
 for language in languages:
-    with open(f"static/reviews/analysed_amazon_reviews_multi_{languages[language]}.csv", "r") as fCSV:
+    with open(os.path.join(APP_ROOT,f"../static/reviews/analysed_amazon_reviews_multi_{languages[language]}.csv", "r")) as fCSV:
         df = pd.read_csv(fCSV)
         dataframes[language] = df
 
