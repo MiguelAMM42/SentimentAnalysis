@@ -5,4 +5,5 @@ seaborn
 nltk
 snscrape
 streamlit
+pathlib
 os
