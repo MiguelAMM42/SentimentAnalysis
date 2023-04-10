@@ -6,4 +6,3 @@ nltk
 snscrape
 streamlit
 pathlib
-os
