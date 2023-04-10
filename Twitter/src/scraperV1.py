@@ -4,7 +4,7 @@ import pandas as pd
 from tqdm import tqdm
 
 
-def scraper(query, maxTweets):
+def scraperV1(query, maxTweets):
     scraper = sntwitter.TwitterSearchScraper(query)
     data = scraper.get_items()
 
