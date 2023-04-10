@@ -6,7 +6,6 @@ APP_ROOT = os.path.dirname(os.path.abspath(__file__))
 
 __path__ = os.path.join(APP_ROOT, "../static/chatGPT_AI/processedData.csv")
 
-#__path__ = Path("static/chatGPT_AI/processedData.csv")
 st.write("A statistical analysis of the sentiments manifested about AI and ChatGPT")
 
 with open(__path__, "r") as fCSV:

@@ -66,10 +66,47 @@ def dropColumns(df,cols):
 
 
 st.title("Twitter Sentiment Analysis")
-st.write("A statistical analysis of the sentiments manifested in a group of tweets")
-st.write("By default, the tweets are indexed from the most recent to the oldest.")
-st.write("However, you can change the order of the tweets to be indexed from the one with the most interations to the one with less.")
-title = st.text_input('Twitter query', 'from:twitter')
+st.subheader("Advanced Search Queries for Twitter")
+instructions = st.markdown('''
+Here are some examples of advanced search queries you can use on Twitter:
+
+1. Search for tweets containing a specific hashtag from a specific user:
+`from:@username #hashtag`
+
+2. Search for tweets mentioning a specific keyword from a specific location:
+`near:"city name" keyword`
+
+3. Search for tweets containing a specific phrase and exclude retweets:
+`"search phrase" -filter:retweets`
+
+4. Search for tweets containing a specific phrase from a specific date range:
+`"search phrase" since:yyyy-mm-dd until:yyyy-mm-dd`
+
+5. Search for tweets containing a specific phrase in a specific language:
+`"search phrase" lang:language code`
+
+6. Search for tweets containing a specific phrase and link:
+`"search phrase" filter:links`
+
+7. Search for tweets sent from a specific Twitter account to another Twitter account:
+`from:@sender to:@recipient`
+
+8. Search for tweets containing a specific hashtag and sent from a specific location:
+`#hashtag geocode:latitude,longitude,radius`
+
+It is also recomended to use logical operators to combine search queries, like `AND` or `OR`.
+You can combine these search queries to find even more specific results. For example, you can search for tweets containing a specific phrase, hashtag, and sent from a specific location. Twitter's advanced search function also allows you to filter by media type, verified accounts, and more.
+''')
+st.markdown("You can see the documentation necessary to build proper Twitter queries [here](https://developer.twitter.com/en/docs/twitter-api/tweets/search/integrate/build-a-query).")
+
+st.divider()
+
+st.subheader("A statistical analysis of the sentiments manifested in a group of tweets")
+st.markdown("Enter a Twitter query and the number of tweets you want to analyze.")
+st.markdown("By default, the tweets are indexed from the most recent to the oldest.")
+st.markdown("However, you can change the order of the tweets to be indexed from the one with the most interations to the one with less.")
+
+title = st.text_input('Twitter query', 'from:@twitter')
 maxTweets = st.slider('Number of tweets', 10, 250)
 option = st.selectbox('Ordering',('Date', 'Interactions'))  
 if st.button('Submit'):  
@@ -79,7 +116,10 @@ if st.button('Submit'):
         df = df.sort_values(by='totalEngagement', ascending=False)
     sentiments = sentimentAnalysis(df)
     sentiments['index'] = range(1, len(df) + 1)
-    st.line_chart(data=sentiments, x="index", y="compound", use_container_width=True)
+    if sentiments.shape[0] > 0:
+        st.line_chart(data=sentiments, x="index", y="compound", use_container_width=True)
+    else:
+        st.warning("No tweets found for the given query.")
     if option == 'Interactions':
         st.header("Top 5 tweets by engagement")
         st.divider()
@@ -101,5 +141,6 @@ if st.button('Submit'):
         st.divider()
 else:
     st.write('Press the button to submit the query')
+
 
 
