@@ -25,7 +25,9 @@ def getPartofDataset(df, perStarNr):
 
 def translateData(df, translator):
     for index, row in tqdm(df.iterrows(), total=df.shape[0]):
+        originalText = row["review_text"]
         df.at[index, "review_text"] = translator(row["review_text"])[0]["translation_text"]
+        df.at[index, "original_text"] = originalText
     return df
 
 
