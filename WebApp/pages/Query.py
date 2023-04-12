@@ -118,27 +118,27 @@ if st.button('Submit'):
     sentiments['index'] = range(1, len(df) + 1)
     if sentiments.shape[0] > 0:
         st.line_chart(data=sentiments, x="index", y="compound", use_container_width=True)
+        if option == 'Interactions':
+            st.header("Top 5 tweets by engagement")
+            st.divider()
+        else:
+            st.header("5 most recent tweets")
+            st.divider()
+        for i in range(5):
+            date = sentiments.iloc[i]['date'].strftime("%Y/%m/%d %H:%M:%S")
+            st.markdown(f"***Tweet Date:*** `{date}`")
+            st.markdown(f"***Tweet Content:*** `{sentiments.iloc[i]['renderedContent']}`")
+            st.markdown(f"***Tweet Likes:*** `{sentiments.iloc[i]['likeCount']}`")
+            st.markdown(f"***Tweet Retweets:*** `{sentiments.iloc[i]['retweetCount']}`")
+            st.markdown(f"***Tweet Replies:*** `{sentiments.iloc[i]['replyCount']}`")
+            st.markdown(f"***Tweet Hashtags:*** `{sentiments.iloc[i]['hashtags']}`")
+            st.markdown(f"***Tweet Sentiment (compound):*** `{sentiments.iloc[i]['compound']}`")
+            st.markdown(f"***Tweet Sentiment (positive):*** `{sentiments.iloc[i]['pos']}`")
+            st.markdown(f"***Tweet Sentiment (negative):*** `{sentiments.iloc[i]['neg']}`")
+            st.markdown(f"***Tweet Sentiment (neutral):*** `{sentiments.iloc[i]['neu']}`")
+            st.divider()
     else:
         st.warning("No tweets found for the given query.")
-    if option == 'Interactions':
-        st.header("Top 5 tweets by engagement")
-        st.divider()
-    else:
-        st.header("5 most recent tweets")
-        st.divider()
-    for i in range(5):
-        date = sentiments.iloc[i]['date'].strftime("%Y/%m/%d %H:%M:%S")
-        st.markdown(f"***Tweet Date:*** `{date}`")
-        st.markdown(f"***Tweet Content:*** `{sentiments.iloc[i]['renderedContent']}`")
-        st.markdown(f"***Tweet Likes:*** `{sentiments.iloc[i]['likeCount']}`")
-        st.markdown(f"***Tweet Retweets:*** `{sentiments.iloc[i]['retweetCount']}`")
-        st.markdown(f"***Tweet Replies:*** `{sentiments.iloc[i]['replyCount']}`")
-        st.markdown(f"***Tweet Hashtags:*** `{sentiments.iloc[i]['hashtags']}`")
-        st.markdown(f"***Tweet Sentiment (compound):*** `{sentiments.iloc[i]['compound']}`")
-        st.markdown(f"***Tweet Sentiment (positive):*** `{sentiments.iloc[i]['pos']}`")
-        st.markdown(f"***Tweet Sentiment (negative):*** `{sentiments.iloc[i]['neg']}`")
-        st.markdown(f"***Tweet Sentiment (neutral):*** `{sentiments.iloc[i]['neu']}`")
-        st.divider()
 else:
     st.write('Press the button to submit the query')
 

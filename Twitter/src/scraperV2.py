@@ -1,5 +1,4 @@
 import pandas as pd
-import csv
 import re
 from tqdm import tqdm
 import snscrape.modules.twitter as sntwitter

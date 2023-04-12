@@ -11,7 +11,7 @@ st.markdown('You can see some stats from the sentiment analysis in a group of am
 st.markdown('For that, visit : <a href="https://miguelamm42-sentimentanalysis-webapphome-riz5x5.streamlit.app/Reviews" target="_self">Reviews</a>', unsafe_allow_html=True)
 st.markdown("- **Sentiment Analysis of a group of tweets**")
 st.markdown('You can see some stats from a group of tweets, being the main stats the sentiment analysis of the tweets')
-st.markdown('An example with the sentiment analysis of tweets about AI and ChatGPT can be seen in : <a href="https://miguelamm42-sentimentanalysis-webapphome-riz5x5.streamlit.app/AI" target="_self">AI</a>', unsafe_allow_html=True)
+st.markdown('An example with the sentiment analysis of tweets about AI and ChatGPT in different weeks can be seen in : <a href="https://miguelamm42-sentimentanalysis-webapphome-riz5x5.streamlit.app/AI" target="_self">AI</a>', unsafe_allow_html=True)
 st.markdown('However, the **main functionality of** this web app is the Sentiment Analysis of a group of tweets, obtained from a query. For that, visit : <a href="https://miguelamm42-sentimentanalysis-webapphome-riz5x5.streamlit.app/Query" target="_self">Tweets</a>', unsafe_allow_html=True)
 
 st.subheader("Made by:")

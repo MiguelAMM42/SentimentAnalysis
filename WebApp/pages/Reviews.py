@@ -59,7 +59,7 @@ st.markdown(f"***Positive score:*** `{oneStarReview['pos'].values[0]}`")
 st.markdown(f"***Negative score:*** `{oneStarReview['neg'].values[0]}`")
 st.markdown(f"***Neutral score:*** `{oneStarReview['neu'].values[0]}`")
 st.markdown(f"***Compound score:*** `{oneStarReview['compound'].values[0]}`")
-st.markdown(f"***Product category:*** `{fiveStarReview['product_category'].values[0]}`")
+st.markdown(f"***Product category:*** `{oneStarReview['product_category'].values[0]}`")
 st.divider()
 
 st.header("Aggregate Stats")

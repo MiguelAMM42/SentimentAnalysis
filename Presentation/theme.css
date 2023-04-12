@@ -1,0 +1,213 @@
+@charset "UTF-8";
+/*!
+ * Marp / Marpit TokyoNight theme.
+ *
+ * @theme tokyonight
+ * @author tgvp
+ * @size 4:3 960px 720px
+ * @size 16:9 1280px 720px
+ */
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code&family=PT+Sans&family=Sofia+Sans&display=swap');
+@import "theme_tokyonight_code.css";
+svg[data-marp-fitting='svg'] {
+  max-height: 580px; }
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0.20em 0 0 0; }
+  h1 strong,
+  h2 strong,
+  h3 strong,
+  h4 strong,
+  h5 strong,
+  h6 strong {
+    font-weight: inherit; }
+
+h1 {
+  font-size: 1.8em; }
+
+h2 {
+  font-size: 1.5em; }
+
+h3 {
+  font-size: 1.3em; }
+
+h4 {
+  font-size: 1.1em; }
+
+h5 {
+  font-size: 1em; }
+
+h6 {
+  font-size: 0.9em; }
+
+p,
+blockquote {
+  margin: 1em 0 0 0; }
+
+ul > li,
+ol > li {
+  margin: 0.3em 0 0 0; }
+  ul > li > p,
+  ol > li > p {
+    margin: 0.6em 0 0 0; }
+
+code {
+  display: inline-block;
+  font-family: 'NasuM', 'Fira Code', monospace;
+  font-size: 0.8em;
+  letter-spacing: 0;
+  margin: -0.1em 0.15em;
+  padding: 0.1em 0.2em;
+  vertical-align: baseline; }
+
+pre {
+  display: block;
+  margin: 1em 0 0 0;
+  min-height: 1em;
+  overflow: visible; }
+  pre code {
+    box-sizing: border-box;
+    margin: 0;
+    min-width: 100%;
+    padding: 0.5em;
+    font-size: 0.7em; }
+    pre code svg[data-marp-fitting='svg'] {
+      max-height: calc(580px - 1em); }
+
+blockquote {
+  margin: 1em 0 0 0;
+  padding: 0 1em;
+  position: relative; }
+  blockquote::after, blockquote::before {
+    content: '“';
+    display: block;
+    font-family: 'Sofia Sans', sans-serif;
+    font-weight: bold;
+    position: absolute; }
+  blockquote::before {
+    top: 0;
+    left: 0; }
+  blockquote::after {
+    right: 0;
+    bottom: 0;
+    transform: rotate(180deg); }
+  blockquote > *:first-child {
+    margin-top: 0; }
+
+mark {
+  background: transparent; }
+
+table {
+  border-spacing: 0;
+  border-collapse: collapse;
+  margin: 1em 0 0 0; }
+  table th,
+  table td {
+    padding: 0.2em 0.4em;
+    border-width: 1px;
+    border-style: solid; }
+
+section {
+  background-image: linear-gradient(to bottom, #1A1B26, #16161E);
+  font-size: 28px;
+  font-family: 'PT Sans', 'Avenir Next', 'Avenir', 'Trebuchet MS', 'Segoe UI', sans-serif;
+  line-height: 1.35;
+  letter-spacing: 1.25px;
+  padding: 70px;
+  color: #FFF2DD;
+  background-color: #4e4f53; }
+  section > *:first-child,
+  section > header:first-child + * {
+    margin-top: 15; }
+  section a,
+  section mark {
+    color: #C76C1B; }
+  section code {
+    background: #1A1B26;
+    color: #dcd1c1; }
+  section h1 strong,
+  section h2 strong,
+  section h3 strong,
+  section h4 strong,
+  section h5 strong,
+  section h6 strong {
+    color: #C76C1B; }
+  section h1 img,
+  section h2 img,
+  section h3 img,
+  section h4 img,
+  section h5 img,
+  section h6 img {
+    display: block;
+    margin: auto; }
+  section pre > code {
+    background: #1A1B26; }
+  section header,
+  section footer,
+  section section::after,
+  section blockquote::before,
+  section blockquote::after {
+    color: #dcd1c1; }
+  section table th,
+  section table td {
+    border-color: #CCCCCC; }
+  section table thead th {
+    background: #CCCCCC;
+    color: #4e4f53; }
+  section table tbody > tr:nth-child(odd) td,
+  section table tbody > tr:nth-child(odd) th {
+    background: #9A9A9A; 
+}
+
+section.title h1 {
+  text-align: center;
+  margin-top: 190px;
+}
+
+section.title h2 {
+  text-align: center;
+  margin-top: 10px;
+}
+
+section.title h3 {
+  text-align: center;
+  margin-top: 7px;
+}
+
+header,
+footer,
+section::after {
+  box-sizing: border-box;
+  font-size: 66%;
+  height: 70px;
+  line-height: 50px;
+  overflow: hidden;
+  padding: 10px 25px;
+  position: absolute; }
+
+header {
+  left: 0;
+  right: 0;
+  top: 0; }
+
+footer {
+  left: 0;
+  right: 0;
+  bottom: 0; }
+
+section::after {
+  right: 0;
+  bottom: 0;
+  font-size: 80%; }
+
+img[alt~="center"] {
+    display: block;
+    margin: 0 auto;
+}
+
+/*# sourceMappingURL=olive.css.map */
